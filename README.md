@@ -133,7 +133,7 @@ Você pode personalizar este script para incluir validações, log de histórico
 }
 ```
 
-### Configuração do application.properties
+## Configuração do application.properties
 
 ```bash
 # Datasource
@@ -151,7 +151,7 @@ springdoc.api-docs.enabled=true
 springdoc.swagger-ui.enabled=true
 ```
 
-### Configuração da imagem com Dockerfile
+## Configuração da imagem com Dockerfile
 
 ```bash
 # Etapa 1: Build da aplicação com cache de dependências
@@ -189,7 +189,7 @@ EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
-### Configuração do container com o docker-compose
+## Configuração do container com o docker-compose
 
 ```bash
 version: "3.8"
@@ -277,7 +277,7 @@ networks:
 
 ```
 
-### Configuração das dependências no arquivo pom.yml
+## Configuração das dependências no arquivo pom.yml
 
 ```bash
 <dependency>
@@ -345,3 +345,7 @@ networks:
 </dependency>
 
 ```
+
+## 💻 Observação
+
+- Será necessário criar o arquivo .env com as variáveis ambiente.
