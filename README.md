@@ -1,4 +1,4 @@
-# 🚀 Configurações para aplicação com Java, Spring Boot, Open API (swagger) PostgreSQL com container Docker com script de restart do Container 🔥
+# 🛠️ Configurações Java + Spring Boot + PostgreSQL com OpenAPI — Aplicação Conteinerizada com Docker e Script de Auto-Restart Ready! 💥
 
 Este repositório guarda arquivos de dependência e configuração de aplicação java com persistência em
 um banco de dados postgres via Dockerfile e docker-compose.yml
