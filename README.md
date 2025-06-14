@@ -713,10 +713,10 @@ public ResponseEntity<?> save(@Valid @RequestBody UserDTO dto) {}
 ## 🧠 Extras e Recomendados
 
 Annotation Categoria Finalidade
-@EnableJpaRepositories Spring Data Ativa repositórios Spring JPA
-@EntityListeners(AuditingEntityListener.class) JPA Permite auditoria de campos (createdAt/updatedAt)
-@CreatedDate, @LastModifiedDate JPA Auditar timestamps com Spring Data
-@RestControllerAdvice Spring Web Trata erros globais de APIs
+`@EnableJpaRepositories` Spring Data Ativa repositórios Spring JPA
+`@EntityListeners(AuditingEntityListener.class)` JPA Permite auditoria de campos (createdAt/updatedAt)
+`@CreatedDate`, `@LastModifiedDate` JPA Auditar timestamps com Spring Data
+`@RestControllerAdvice` Spring Web Trata erros globais de APIs
 
 | Annotation                                       | Categoria   | Finalidade                                                                      |
 | ------------------------------------------------ | ----------- | ------------------------------------------------------------------------------- |
