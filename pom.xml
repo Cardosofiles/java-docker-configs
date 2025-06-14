@@ -9,6 +9,16 @@
   <artifactId>spring-boot-starter-web</artifactId>
 </dependency>
 
+<dependency>
+  <groupId>io.micronaut</groupId>
+  <artifactId>micronaut-http-server-netty</artifactId>
+</dependency>
+
+
+<dependency>
+  <groupId>io.quarkus</groupId>
+  <artifactId>quarkus-resteasy-reactive</artifactId>
+</dependency>
 
 <dependency>
   <groupId>org.springframework.boot</groupId>
@@ -42,6 +52,12 @@
   <artifactId>jjwt-impl</artifactId>
   <version>0.11.5</version>
   <scope>runtime</scope>
+</dependency>
+
+<dependency>
+  <groupId>jakarta.ws.rs</groupId>
+  <artifactId>jakarta.ws.rs-api</artifactId>
+  <version>3.1.0</version>
 </dependency>
 
 <dependency>
