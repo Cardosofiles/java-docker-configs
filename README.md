@@ -110,8 +110,8 @@ Você pode personalizar este script para incluir validações, log de histórico
 
 ## 📌 Requisitos
 
+- Ambiente Linux (Ubuntu, Kali, Arch, etc...)
 - Docker e Docker compose instalado
-- Terminal WSL (Ubuntu)
 
 ---
 
@@ -348,9 +348,9 @@ networks:
 
 ## 💻 Observação
 
-- Será necessário criar o arquivo .env com as variáveis ambiente.
+- Será necessário criar o arquivo `.env` com as variáveis ambiente.
 
-# Anotações Fundamentais para Projetos Java Escaláveis
+# Annotations Fundamentais para Projetos Java Escaláveis
 
 ## 1. 📦 Spring Boot e Spring Framework
 
