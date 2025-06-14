@@ -369,10 +369,14 @@ public class Application {
 }
 ```
 
+---
+
 🔹 `@Configuration`
 
 - Descrição: Define uma classe como fonte de configurações Spring Beans.
 - Boa prática: Use para agrupar configurações complexas de beans (ex: Beans de segurança ou integração).
+
+---
 
 🔹 `@ComponentScan`
 
@@ -382,6 +386,8 @@ public class Application {
 ```bash
 @ComponentScan(basePackages = "com.example.myapp")
 ```
+
+---
 
 🔹 `@Bean`
 
@@ -403,31 +409,43 @@ public ModelMapper modelMapper() {
 - Descrição: Marca uma classe como um bean genérico.
 - Nota: Classes anotadas com @Component são detectadas automaticamente via `@ComponentScan`.
 
+---
+
 🔹 `@Service`
 
 - Descrição: Específico para classes que representam a lógica de negócio (serviços).
 - Semântica: Mesmo comportamento que `@Component`, mas semanticamente distinto.
+
+---
 
 🔹 `@Repository`
 
 - Descrição: Marca classes de persistência de dados (DAO).
 - Funcionalidade extra: Traduz exceções de persistência para `DataAccessException`.
 
+---
+
 🔹 `@Controller`
 
 - Descrição: Define um controlador Web MVC.
 - Nota: Retorna views (não JSON por padrão).
+
+---
 
 🔹 `@RestController`
 
 - Descrição: Combina `@Controller` + `@ResponseBody`. Ideal para APIs REST.
 - Boa prática: Use em aplicações que expõem JSON/REST.
 
+---
+
 🔹 @Autowired
 
 - Descrição: Injeção automática de dependências.
 - Importante: A partir do Spring 4.3+, pode-se usar construtores com `@Autowired` opcionalmente omitido.
 - Recomendação: Prefira constructor injection.
+
+---
 
 🔹 `@Qualifier`
 
@@ -451,9 +469,13 @@ private NotificationService service;
 @RequestMapping("/api/v1/path")
 ```
 
+---
+
 🔹 `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`
 
 - Descrição: Atalhos para `@RequestMapping(method = ...)`.
+
+---
 
 🔹 `@PathVariable`
 
@@ -464,6 +486,8 @@ private NotificationService service;
 public Candidate findById(@PathVariable Long id) {}
 ```
 
+---
+
 🔹 `@RequestParam`
 
 - Descrição: Captura parâmetros de query string.
@@ -473,13 +497,19 @@ public Candidate findById(@PathVariable Long id) {}
 public List<Candidate> search(@RequestParam String name) {}
 ```
 
+---
+
 🔹 `@RequestBody`
 
 - Descrição: Converte JSON do corpo da requisição para objeto Java.
 
+---
+
 🔹 `@ResponseBody`
 
 - Descrição: Converte objetos Java em JSON na resposta.
+
+---
 
 🔹 `@ExceptionHandler`
 
@@ -491,13 +521,19 @@ public List<Candidate> search(@RequestParam String name) {}
 
 - Descrição: Marca uma classe como entidade persistente.
 
+---
+
 🔹 `@Table(name = "nome_tabela")`
 
 - Descrição: Define a tabela no banco de dados.
 
+---
+
 🔹 @Id
 
 - Descrição: Define o campo primário da entidade.
+
+---
 
 🔹 `@GeneratedValue`
 
@@ -511,6 +547,8 @@ public List<Candidate> search(@RequestParam String name) {}
 
   - GenerationType.TABLE
 
+---
+
 🔹 `@Column`
 
 - Descrição: Configura propriedades da coluna.
@@ -520,13 +558,85 @@ public List<Candidate> search(@RequestParam String name) {}
 @Column(name = "email", nullable = false, unique = true)
 ```
 
+---
+
 🔹 `@OneToMany, @ManyToOne, @OneToOne, @ManyToMany`
 
 - Descrição: Define relacionamentos entre entidades.
 
+- #### `@ManyToOne`
+
+  - 📌 Significado:
+  - Muitos objetos de uma entidade se relacionam com um único objeto de outra entidade.
+  - É o lado "muitos" de um relacionamento N:1.
+  - 📚 Exemplo Clássico:
+
+  ```bash
+  @Entity
+
+    public class Candidate {
+
+    @Id @GeneratedValue
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "vacancy_id") // nome da FK na tabela Candidate
+    private Vacancy vacancy;
+
+    }
+  ```
+
+- #### `@ManyToMany`
+
+  - 📌 Significado:
+  - Muitos para muitos: N entidades estão relacionadas a N outras.
+  - 📚 Exemplo Clássico:
+
+  ```bash
+  @Entity
+  public class Candidate {
+
+    @Id @GeneratedValue
+    private Long id;
+
+    @ManyToMany
+    @JoinTable(
+        name = "candidate_skill",
+        joinColumns = @JoinColumn(name = "candidate_id"),
+        inverseJoinColumns = @JoinColumn(name = "skill_id")
+    )
+    private Set<Skill> skills = new HashSet<>();
+
+  }
+  ```
+
+- #### `@OneToMany`
+
+  - 📌 Significado:
+  - Um objeto se relaciona com muitos de outra entidade.
+  - Inverso do `@ManyToOne`.
+  - 📚 Exemplo Clássico:
+
+  ```bash
+  @Entity
+  public class Vacancy {
+
+    @Id @GeneratedValue
+    private Long id;
+
+    @OneToMany(mappedBy = "vacancy", cascade = CascadeType.ALL)
+    private List<Candidate> candidates = new ArrayList<>();
+
+  }
+  ```
+
+---
+
 🔹 `@JoinColumn`
 
 - Descrição: Customiza a coluna de junção em relacionamentos.
+
+---
 
 🔹 `@Embedded, @Embeddable`
 
@@ -539,17 +649,25 @@ public List<Candidate> search(@RequestParam String name) {}
 - Descrição: Gera getters, setters, toString, equals e hashCode.
 - Atenção: Não recomendado para entidades JPA com relacionamentos bidirecionais.
 
+---
+
 🔹 `@Getter, @Setter`
 
 - Descrição: Gera os respectivos métodos de acesso.
+
+---
 
 🔹 `@ToString, @EqualsAndHashCode`
 
 - Descrição: Define como os métodos toString e equals/hashCode são gerados.
 
+---
+
 🔹 `@NoArgsConstructor, @AllArgsConstructor, @RequiredArgsConstructor`
 
 - Descrição: Gera construtores automaticamente.
+
+---
 
 🔹 `@Builder`
 
@@ -569,6 +687,8 @@ Candidate c = Candidate.builder().name("João").email("joao@example.com").build(
 public ResponseEntity<?> save(@Valid @RequestBody UserDTO dto) {}
 ```
 
+---
+
 🔹 `@NotNull, @NotEmpty, @Size, @Email, @Min, @Max`
 
 - Descrição: Validações declarativas em atributos.
@@ -582,6 +702,8 @@ public ResponseEntity<?> save(@Valid @RequestBody UserDTO dto) {}
 ```bash
 @Profile("dev")
 ```
+
+---
 
 🔹 `@Transactional`
 
